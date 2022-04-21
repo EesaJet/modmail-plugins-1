@@ -188,8 +188,8 @@ class Moderation(commands.Cog):
         await self.log(
             guild=ctx.guild,
             embed=discord.Embed(
-                title="DM Message",
-                description=f"{ctx.author.mention} messaged {member}:"
+                title="Automated Message",
+                description=f"An automated message was sent to {member}:"
                 + (f" {reason}" if reason else "."),
                 color=self.bot.main_color,
             ).set_footer(text=f"Quality Line Support"),
