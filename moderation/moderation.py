@@ -165,6 +165,55 @@ class Moderation(commands.Cog):
                 color=self.bot.main_color,
             ).set_footer(text=f"This is the {case} case.")
         )
+        
+    @commands.command(usage="<member> [reason]")
+    @checks.has_permissions(PermissionLevel.MODERATOR)
+    async def mes(self, ctx, member: discord.Member = None, *, reason=None):
+        """
+        Messages the specified member.
+        """
+        if member == None:
+            return await ctx.send_help(ctx.command)
+
+        if reason != None:
+            if not reason.endswith("."):
+                reason = reason + "."
+
+        case = await self.get_case()
+
+        msg = f"This is an automated message from the {ctx.guild.name}" + (
+            f"
+          {reason}" if reason else "."
+        )
+
+        await self.log(
+            guild=ctx.guild,
+            embed=discord.Embed(
+                title="DM Message",
+                description=f"{ctx.author.mention} messaged {member}:"
+                + (f" {reason}" if reason else "."),
+                color=self.bot.main_color,
+            ).set_footer(text=f"Quality Line Support"),
+        )
+
+        try:
+            await member.send(msg)
+        except discord.errors.Forbidden:
+            return await ctx.send(
+                embed=discord.Embed(
+                    title="Failed",
+                    description=f"Message not sent to {member}. I couldn't message them asthey have disabled DMs.",
+                    color=self.bot.main_color,
+                ).set_footer(text=f"Quality Line Support")
+            )
+
+        await ctx.send(
+            embed=discord.Embed(
+                title="Success",
+                description=f"{member} has been messaged.",
+                color=self.bot.main_color,
+            ).set_footer(text=f"Quality Line Support")
+        )
 
     @commands.command(usage="<member> [reason]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
