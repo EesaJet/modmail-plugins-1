@@ -190,7 +190,7 @@ class Moderation(commands.Cog):
             embed=discord.Embed(
                 title="Automated Message",
                 description=f"An automated message was sent to {member}:"
-                + (f" {reason}" if reason else "."),
+                + (f" Confirmed Delivery" if reason else "."),
                 color=self.bot.main_color,
             ).set_footer(text=f"Quality Line Support"),
         )
@@ -205,14 +205,6 @@ class Moderation(commands.Cog):
                     color=self.bot.main_color,
                 ).set_footer(text=f"Quality Line Support")
             )
-
-        await ctx.send(
-            embed=discord.Embed(
-                title="Success",
-                description=f"{member} has been messaged.",
-                color=self.bot.main_color,
-            ).set_footer(text=f"Quality Line Support")
-        )
 
     @commands.command(usage="<member> [reason]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
