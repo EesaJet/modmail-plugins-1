@@ -181,8 +181,8 @@ class Moderation(commands.Cog):
 
         case = await self.get_case()
 
-        msg = f"This is an automated message from the {ctx.guild.name}:" + (
-            f" {reason}" if reason else "."
+        msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
+            f"\n{reason}\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
         )
 
         await self.log(
