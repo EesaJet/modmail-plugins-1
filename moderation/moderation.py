@@ -169,7 +169,7 @@ class Moderation(commands.Cog):
         
     @commands.command(usage="<member> [reason]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def mes(self, ctx, member: discord.Member = None, *, reason=None):
+    async def mreport(self, ctx, member: discord.Member = None, *, reason=None):
         """
         Messages the specified member.
         """
