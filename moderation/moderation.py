@@ -3,10 +3,7 @@ import discord
 from discord.ext import commands
 from core import checks
 from core.models import PermissionLevel
-from datetime import datetime
-
-currentMonth = datetime.now().month
-currentYear = datetime.now().year
+from datetime import datetime    
 
 
 class Moderation(commands.Cog):
@@ -182,11 +179,12 @@ class Moderation(commands.Cog):
         if reason != None:
             if not reason.endswith("."):
                 reason = reason + "."
-
-        case = await self.get_case()
+                
+        currentMonth = datetime.now().month
+        currentYear = datetime.now().year
 
         msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
-            f"\n**Monthly Activity Report - {currentMonth} {currentYear}\n\nHi {member},\n\nBelow details your activity that you completed in {currentMonth}. It is nice to view it from a way which shows growth and success but also potentially room for improvement if needed.{reason}\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
+            f"\n**Monthly Activity Report - {currentMonth}/{currentYear}\n\nHi {member},\n\nBelow details your activity that you completed during the {currentMonth}/{currentYear}. It is nice to view it from a way which shows growth and success but also potentially room for improvement if needed.\n\n{reason}\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
         )
 
         await self.log(
