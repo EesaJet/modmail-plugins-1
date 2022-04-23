@@ -209,7 +209,7 @@ class Moderation(commands.Cog):
             )
 
         
-            @commands.command(usage="<member> [reason]")
+    @commands.command(usage="<member> [reason]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def areport(self, ctx, member: discord.Member = None, *, total = None, *,Reason = None):
         """
