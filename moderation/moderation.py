@@ -208,57 +208,6 @@ class Moderation(commands.Cog):
                 ).set_footer(text=f"Quality Line Support")
             )
 
-        
-    @commands.command(usage="<member> [reason]")
-    @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def areport(self, ctx, member: discord.Member = None, *, total = None, *,Reason = None):
-        """
-        Sends an Activity Report to the user.
-        """
-        if member == None:
-            return await ctx.send_help(ctx.command)
-
-        if total == None:
-            return await ctx.send_help(ctx.command)
-
-        if reason != None:
-            if not reason.endswith("."):
-                reason = reason + "."
-
-        currentDay = datetime.now().day
-        currentMonth = datetime.now().month
-        currentYear = datetime.now().year
-        date_str = currentYear "-" currentMonth "-" currentDay
-        date_obj = datetime.strptime(date_str, '%Y-%m-%d')
- 
-        start_of_week = date_obj - timedelta(days=date_obj.weekday())  # Monday
-        end_of_week = start_of_week + timedelta(days=6)  # Sunday
-
-        msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
-            f"\n**Your Weekly Activity Report - {start_of_week} to {end_of_week}**\n\nHi {member},\n\nBelow details your activity that you completed over the past week. It is nice to view it from a way which shows growth and success but also potentially room for improvement if needed.\n\n{reason}\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
-        )
-
-        await self.log(
-            guild=ctx.guild,
-            embed=discord.Embed(
-                title="Automated Message",
-                description=f"An end of week activity report was sent to {member}:"
-                + (f" Confirmed Delivery" if reason else "."),
-                color=self.bot.main_color,
-            ).set_footer(text=f"Quality Line Support"),
-        )
-
-        try:
-            await member.send(msg)
-        except discord.errors.Forbidden:
-            return await ctx.send(
-                embed=discord.Embed(
-                    title="Failed",
-                    description=f"Message not sent to {member}. I couldn't message them asthey have disabled DMs.",
-                    color=self.bot.main_color,
-                ).set_footer(text=f"Quality Line Support")
-            )
-
     @commands.command(usage="<member> [reason]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def kick(self, ctx, member: discord.Member = None, *, reason=None):
