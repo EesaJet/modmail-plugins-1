@@ -321,7 +321,7 @@ class Moderation(commands.Cog):
             guild=ctx.guild,
             embed=discord.Embed(
                 title="Automated Message",
-                description=f"A SMT weekly activity report was sent to {member}:"
+                description=f"An SMT completed weekly activity report was sent to {member}:"
                 + (f" Confirmed Delivery" if reason else "."),
                 color=self.bot.main_color,
             ).set_footer(text=f"Quality Line Support"),
@@ -365,7 +365,7 @@ class Moderation(commands.Cog):
             guild=ctx.guild,
             embed=discord.Embed(
                 title="Automated Message",
-                description=f"A SMT weekly activity report was sent to {member}:"
+                description=f"An SMT shortfall weekly activity report was sent to {member}:"
                 + (f" Confirmed Delivery" if reason else "."),
                 color=self.bot.main_color,
             ).set_footer(text=f"Quality Line Support"),
@@ -407,7 +407,7 @@ class Moderation(commands.Cog):
             guild=ctx.guild,
             embed=discord.Embed(
                 title="Automated Message",
-                description=f"A weekly activity report was sent to {member}:"
+                description=f"A (C) Mid-Week Activity Check-Up was sent to {member}:"
                 + (f" Confirmed Delivery" if reason else "."),
                 color=self.bot.main_color,
             ).set_footer(text=f"Quality Line Support"),
@@ -446,7 +446,7 @@ class Moderation(commands.Cog):
             guild=ctx.guild,
             embed=discord.Embed(
                 title="Automated Message",
-                description=f"A weekly activity report was sent to {member}:"
+                description=f"An (A) Mid-Week Activity Check-Up was sent to {member}:"
                 + (f" Confirmed Delivery" if reason else "."),
                 color=self.bot.main_color,
             ).set_footer(text=f"Quality Line Support"),
@@ -485,7 +485,7 @@ class Moderation(commands.Cog):
             guild=ctx.guild,
             embed=discord.Embed(
                 title="Automated Message",
-                description=f"A weekly activity report was sent to {member}:"
+                description=f"An (S) Mid-Week Activity Check-Up was sent to {member}:"
                 + (f" Confirmed Delivery" if reason else "."),
                 color=self.bot.main_color,
             ).set_footer(text=f"Quality Line Support"),
