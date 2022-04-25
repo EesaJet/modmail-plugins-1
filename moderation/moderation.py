@@ -228,7 +228,7 @@ class Moderation(commands.Cog):
 
 
         msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
-            f"\n**Weekly Activity Report - Week Ending {currentDay}/{currentMonth}/{currentYear}**\n\nWell done {member}! \n\nYou completed __{reason}__ over the past week which is achieves the minimum activity requirement that we expect to see from our staff. Amazing job!\n\nStarting Monday you will have your normal, 1 hour minimum requirement to complete. Depending on your rank, this will include:\n**MRs:** In-Game / Attending Shifts\n**HRs:** 1x Operators Shift, 1x Group Game Shift & In-Game\n**Engineers:** Studio (when assigned a task)\n**SMT:** 1x Group Shift, TWCP & Assigned Department\n**Directors:** Assigned Department & TWCP (required to host 1x Group Shift a month)\n\nKeep up the great work and have a great week!\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
+            f"\n**Weekly Activity Report - Week Ending {currentDay}/{currentMonth}/{currentYear}**\n\nWell done {member}! \n\nYou completed __{reason}__ over the past week which achieves the minimum activity requirement that we expect to see from our staff. Amazing job!\n\nStarting Monday you will have your normal, 1 hour minimum requirement to complete. Depending on your rank, this will include:\n**MRs:** In-Game / Attending Shifts\n**HRs:** 1x Operators Shift, 1x Group Game Shift & In-Game\n**Engineers:** Studio (when assigned a task)\n**SMT:** 1x Group Shift, TWCP & Assigned Department\n**Directors:** Assigned Department & TWCP (required to host 1x Group Shift a month)\n\nKeep up the great work and have a great week!\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
         )
 
         await self.log(
@@ -279,7 +279,7 @@ class Moderation(commands.Cog):
             guild=ctx.guild,
             embed=discord.Embed(
                 title="Automated Message",
-                description=f"A weekly activity report was sent to {member}:"
+                description=f"A shortfall weekly activity report was sent to {member}:"
                 + (f" Confirmed Delivery" if reason else "."),
                 color=self.bot.main_color,
             ).set_footer(text=f"Quality Line Support"),
@@ -301,7 +301,7 @@ class Moderation(commands.Cog):
           
     @commands.command(usage="<member> [reason]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def wrcompleteSMT(self, ctx, member: discord.Member = None, *, reason=None):
+    async def wrcompletesmt(self, ctx, member: discord.Member = None, *, reason=None):
         """
         Messages the specified member.
         """
@@ -321,7 +321,7 @@ class Moderation(commands.Cog):
             guild=ctx.guild,
             embed=discord.Embed(
                 title="Automated Message",
-                description=f"A weekly activity report was sent to {member}:"
+                description=f"A SMT weekly activity report was sent to {member}:"
                 + (f" Confirmed Delivery" if reason else "."),
                 color=self.bot.main_color,
             ).set_footer(text=f"Quality Line Support"),
@@ -341,7 +341,7 @@ class Moderation(commands.Cog):
           
     @commands.command(usage="<member> [reason]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def wrshortfallSMT(self, ctx, member: discord.Member = None, *, reason=None):
+    async def wrshortfallsmt(self, ctx, member: discord.Member = None, *, reason=None):
         """
         Messages the specified member.
         """
@@ -365,7 +365,7 @@ class Moderation(commands.Cog):
             guild=ctx.guild,
             embed=discord.Embed(
                 title="Automated Message",
-                description=f"A weekly activity report was sent to {member}:"
+                description=f"A SMT weekly activity report was sent to {member}:"
                 + (f" Confirmed Delivery" if reason else "."),
                 color=self.bot.main_color,
             ).set_footer(text=f"Quality Line Support"),
@@ -400,7 +400,7 @@ class Moderation(commands.Cog):
 
 
         msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
-            f"\n**Mid-Week Activity Check-Up - {currentDay}/{currentMonth}/{currentYear}**\n\nWell done {member}! \n\nYou have completed {reason} of activity, meaning that you have already achieved the minimum activity requirement for this week already!. Fantastic job!\nYou may wish to complete some more activity/shifts, by doing so this will increase your chance of weekly & monthly rewards, and also promotions.\n\nKeep up the great work and thank you for bringing your efforts to Quality Line!\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
+            f"\n**Mid-Week Activity Check-Up - {currentDay}/{currentMonth}/{currentYear}**\n\nWell done {member}! \n\nYou have completed __{reason}__ of activity, meaning that you have already achieved the minimum activity requirement for this week already, fantastic job!\nYou may wish to complete some more activity/shifts. Doing so will increase your chance of weekly & monthly rewards, and also promotions.\n\nKeep up the great work and thank you for bringing your efforts to Quality Line!\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
         )
 
         await self.log(
@@ -432,10 +432,6 @@ class Moderation(commands.Cog):
         """
         if member == None:
             return await ctx.send_help(ctx.command)
-
-        if reason != None:
-            if not reason.endswith("."):
-                reason = reason + "."
                 
         currentMonth = datetime.now().month
         currentYear = datetime.now().year
@@ -443,7 +439,7 @@ class Moderation(commands.Cog):
 
 
         msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
-            f"\n***Mid-Week Activity Check-Up - {currentDay}/{currentMonth}/{currentYear}**\n\nHi {member},\n\nThis is a reminder that you have {reason} left to complete this week in order to achieve your minimum activity requirement.\n\n**Please ensure you complete your full activity & requirements this week to avoid recieving shortfall/warnings!**\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
+            f"\n**Mid-Week Activity Check-Up - {currentDay}/{currentMonth}/{currentYear}**\n\nHi {member},\n\nThis is a reminder that you have __{reason}__ left to complete this week in order to achieve your minimum requirements.\n\n**Please ensure you complete your full activity & requirements this week to avoid recieving shortfall/warnings!**\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
         )
 
         await self.log(
@@ -475,10 +471,6 @@ class Moderation(commands.Cog):
         """
         if member == None:
             return await ctx.send_help(ctx.command)
-
-        if reason != None:
-            if not reason.endswith("."):
-                reason = reason + "."
                 
         currentMonth = datetime.now().month
         currentYear = datetime.now().year
@@ -486,7 +478,7 @@ class Moderation(commands.Cog):
 
 
         msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
-            f"\n***Mid-Week Activity Check-Up - {currentDay}/{currentMonth}/{currentYear}**\n\nHi {member},\n\nAlthough you have completed your activity hours this week, you still have {reason} left to do in order to achieve your minimum shift requirement.\n\n**This ensure **MUST** be completed this week to avoid recieving shortfall/warnings!** Please make sure its done! :)\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
+            f"\n**Mid-Week Activity Check-Up - {currentDay}/{currentMonth}/{currentYear}**\n\nHi {member},\n\nAlthough you have completed your activity hours this week, you still have __{reason}__ left to do in order to achieve your minimum shift requirement this week.\n\n**This __MUST__ be completed to avoid recieving shortfall or warnings!** Please make sure its done! :)\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
         )
 
         await self.log(
