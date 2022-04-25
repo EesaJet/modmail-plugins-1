@@ -439,7 +439,7 @@ class Moderation(commands.Cog):
 
 
         msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
-            f"\n**Mid-Week Activity Check-Up - {currentDay}/{currentMonth}/{currentYear}**\n\nHi {member},\n\nThis is a reminder that you have __{reason}__ left to complete this week in order to achieve your minimum requirements.\n\n**Please ensure you complete your full activity & requirements this week to avoid recieving shortfall/warnings!**\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
+            f"\n**Mid-Week Activity Check-Up - {currentDay}/{currentMonth}/{currentYear}**\n\nHi {member},\n\nThis is a reminder that you have __{reason}__ left to complete this week in order to achieve your minimum requirements.\n\n**Please ensure you complete your full activity & shift requirements this week to avoid recieving shortfall/warnings!**\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
         )
 
         await self.log(
