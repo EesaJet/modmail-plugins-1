@@ -167,6 +167,8 @@ class Moderation(commands.Cog):
             ).set_footer(text=f"This is the {case} case.")
         )
         
+    #---------------Monthly Reports---------------        
+        
     @commands.command(usage="<member> [reason]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def mreport(self, ctx, member: discord.Member = None, *, reason=None):
@@ -208,14 +210,12 @@ class Moderation(commands.Cog):
                 ).set_footer(text=f"Quality Line Support")
             )
         
-        
-        
-        
-        
+                     
+    #---------------Weekly Reports---------------
           
     @commands.command(usage="<member> [reason]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def wreport(self, ctx, member: discord.Member = None, *, reason=None):
+    async def wrcomplete(self, ctx, member: discord.Member = None, *, reason=None):
         """
         Messages the specified member.
         """
@@ -232,7 +232,7 @@ class Moderation(commands.Cog):
 
 
         msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
-            f"\n**Weekly Activity Report - Week Ending {currentDay}/{currentMonth}/{currentYear}**\n\nWell done {member}! \n\nYou completed __{reason}__over the past week which is achieves the minimum activity requirement that we expect to see from our staff.\n\nNext week you will have your normal, 1 hour minimum requirement to complete. Depending on your rank, this will include:\n**MRs:** In-Game / Attending Shifts\n**HRs:** 1x Operators Shift, 1x Group Game Shift & In-Game\n**Engineers:** Studio (when assigned a task)\n**SMT:** 1x Group Shift, TWCP & Assigned Department\n**Directors:** Assigned Department & TWCP (required to host 1z Group Shift a month)\n\n Keep up the great work and have a great week!\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
+            f"\n**Weekly Activity Report - Week Ending {currentDay}/{currentMonth}/{currentYear}**\n\nWell done {member}! \n\nYou completed __{reason}__over the past week which is achieves the minimum activity requirement that we expect to see from our staff.\n\nStarting Monday you will have your normal, 1 hour minimum requirement to complete. Depending on your rank, this will include:\n**MRs:** In-Game / Attending Shifts\n**HRs:** 1x Operators Shift, 1x Group Game Shift & In-Game\n**Engineers:** Studio (when assigned a task)\n**SMT:** 1x Group Shift, TWCP & Assigned Department\n**Directors:** Assigned Department & TWCP (required to host 1z Group Shift a month)\n\nKeep up the great work and have a great week!\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
         )
 
         await self.log(
@@ -256,6 +256,49 @@ class Moderation(commands.Cog):
                 ).set_footer(text=f"Quality Line Support")
             )
         
+          
+    @commands.command(usage="<member> [reason]")
+    @checks.has_permissions(PermissionLevel.MODERATOR)
+    async def wrshortfall(self, ctx, member: discord.Member = None, *, reason=None):
+        """
+        Messages the specified member.
+        """
+        if member == None:
+            return await ctx.send_help(ctx.command)
+
+        if reason != None:
+            if not reason.endswith("."):
+                reason = reason + "."
+                
+        currentMonth = datetime.now().month
+        currentYear = datetime.now().year
+        currentDay = datetime.now().day
+
+
+        msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
+            f"\n**Weekly Activity Report - Week Ending {currentDay}/{currentMonth}/{currentYear}**\n\Hi {member}, \n\n Unfortunately you have not met the minimum activity requirement that we expect from our staff members over the past week, which has resulted in shortfall. \n\n{reason}\n\nYour shortfall will be added onto your requirements starting Monday (ontop of the 1 hour minimum requirement). You **MUST** complete your full activity & shift requirement this week (including your shortfall) to avoid recieving a warning. \n\nDepending on your rank, you should be doing the following **AS WELL AS YOUR SHORTFALL**:\n**MRs:** In-Game / Attending Shifts\n**HRs:** 1x Operators Shift, 1x Group Game Shift & In-Game\n**Engineers:** Studio (when assigned a task)\n**SMT:** 1x Group Shift, TWCP & Assigned Department\n**Directors:** Assigned Department & TWCP (required to host 1z Group Shift a month)\n\n**Please ensure you complete your full requirements this week to avoid recieving a warning on Sunday.**\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
+        )
+
+        await self.log(
+            guild=ctx.guild,
+            embed=discord.Embed(
+                title="Automated Message",
+                description=f"A weekly activity report was sent to {member}:"
+                + (f" Confirmed Delivery" if reason else "."),
+                color=self.bot.main_color,
+            ).set_footer(text=f"Quality Line Support"),
+        )
+
+        try:
+            await member.send(msg)
+        except discord.errors.Forbidden:
+            return await ctx.send(
+                embed=discord.Embed(
+                    title="Failed",
+                    description=f"Message not sent to {member}. I couldn't message them asthey have disabled DMs.",
+                    color=self.bot.main_color,
+                ).set_footer(text=f"Quality Line Support")
+            )      
         
         
         
