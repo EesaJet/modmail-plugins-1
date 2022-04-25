@@ -224,7 +224,7 @@ class Moderation(commands.Cog):
 
         if reason != None:
             if not reason.endswith("."):
-                reason = reason + "."
+                reason = reason + " "
                 
         currentMonth = datetime.now().month
         currentYear = datetime.now().year
@@ -232,7 +232,7 @@ class Moderation(commands.Cog):
 
 
         msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
-            f"\n**Weekly Activity Report - Week Ending {currentDay}/{currentMonth}/{currentYear}**\n\nWell done {member}! \n\nYou completed __{reason}__ over the past week which is achieves the minimum activity requirement that we expect to see from our staff.\n\nNext week you will have your normal, 1 hour minimum requirement to complete. Depending on your rank, this will include:\n**MRs:** In-Game / Attending Shifts\n**HRs:** 1x Operators Shift, 1x Group Game Shift & In-Game\n**Engineers:** Studio (when assigned a task)\n**SMT:** 1x Group Shift, TWCP & Assigned Department\n**Directors:** Assigned Department & TWCP (required to host 1z Group Shift a month)\n\n Keep up the great work and have a great week!\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
+            f"\n**Weekly Activity Report - Week Ending {currentDay}/{currentMonth}/{currentYear}**\n\nWell done {member}! \n\nYou completed __{reason}__over the past week which is achieves the minimum activity requirement that we expect to see from our staff.\n\nNext week you will have your normal, 1 hour minimum requirement to complete. Depending on your rank, this will include:\n**MRs:** In-Game / Attending Shifts\n**HRs:** 1x Operators Shift, 1x Group Game Shift & In-Game\n**Engineers:** Studio (when assigned a task)\n**SMT:** 1x Group Shift, TWCP & Assigned Department\n**Directors:** Assigned Department & TWCP (required to host 1z Group Shift a month)\n\n Keep up the great work and have a great week!\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
         )
 
         await self.log(
@@ -240,7 +240,7 @@ class Moderation(commands.Cog):
             embed=discord.Embed(
                 title="Automated Message",
                 description=f"A weekly activity report was sent to {member}:"
-                + (f" Confirmed Delivery" if reason else " "),
+                + (f" Confirmed Delivery" if reason else "."),
                 color=self.bot.main_color,
             ).set_footer(text=f"Quality Line Support"),
         )
