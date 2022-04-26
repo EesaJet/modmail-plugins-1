@@ -400,7 +400,7 @@ class Moderation(commands.Cog):
 
 
         msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
-            f"\n**Activity Completed - {currentDay}/{currentMonth}/{currentYear}**\n\nWell done {member}! \n\nYou have completed your minimum activity requirement for this week, amazing job! 🥳\n**Additional Comments:**{reason}\n\nYou may wish to complete some more activity/shifts. Doing so will increase your chance of weekly & monthly rewards, and also promotions.\n\nKeep up the great work and thank you for bringing your efforts to Quality Line!\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
+            f"\n**Activity Completed - {currentDay}/{currentMonth}/{currentYear}**\n\nWell done {member}! \n\nYou have completed your minimum activity requirement for this week, amazing job! 🥳\n**Additional Comments:** {reason}\n\nYou may wish to complete some more activity/shifts. Doing so will increase your chance of weekly & monthly rewards, and also promotions.\n\nKeep up the great work and thank you for bringing your efforts to Quality Line!\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
         )
 
         await self.log(
