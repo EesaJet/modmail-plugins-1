@@ -383,6 +383,49 @@ class Moderation(commands.Cog):
             )       
         
         
+                     #---------------Activity Completed Notification---------------
+          
+    @commands.command(usage="<member> [reason]")
+    @checks.has_permissions(PermissionLevel.MODERATOR)
+    async def actcomplete(self, ctx, member: discord.Member = None, *, reason=None):
+        """
+        Messages the specified member.
+        """
+        if member == None:
+            return await ctx.send_help(ctx.command)
+                
+        currentMonth = datetime.now().month
+        currentYear = datetime.now().year
+        currentDay = datetime.now().day
+
+
+        msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
+            f"\n**Activity Completed - {currentDay}/{currentMonth}/{currentYear}**\n\nWell done {member}! \n\nYou have completed your minimum activity requirement for this week, amazing job! 🥳\nYou may wish to complete some more activity/shifts. Doing so will increase your chance of weekly & monthly rewards, and also promotions.\n\nKeep up the great work and thank you for bringing your efforts to Quality Line!\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
+        )
+
+        await self.log(
+            guild=ctx.guild,
+            embed=discord.Embed(
+                title="Automated Message",
+                description=f"A (C) Mid-Week Activity Check-Up was sent to {member}:"
+                + (f" Confirmed Delivery" if reason else "."),
+                color=self.bot.main_color,
+            ).set_footer(text=f"Quality Line Support"),
+        )
+
+        try:
+            await member.send(msg)
+        except discord.errors.Forbidden:
+            return await ctx.send(
+                embed=discord.Embed(
+                    title="Failed",
+                    description=f"Message not sent to {member}. I couldn't message them asthey have disabled DMs.",
+                    color=self.bot.main_color,
+                ).set_footer(text=f"Quality Line Support")
+            )        
+        
+        
+        
              #---------------Mid-Week Check-up---------------
           
     @commands.command(usage="<member> [reason]")
