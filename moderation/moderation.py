@@ -210,6 +210,89 @@ class Moderation(commands.Cog):
                 ).set_footer(text=f"Quality Line Support")
             )
         
+        
+            #---------------AA Notify---------------
+          
+    @commands.command(usage="<member> [reason]")
+    @checks.has_permissions(PermissionLevel.MODERATOR)
+    async def aa(self, ctx, member: discord.Member = None, *, reason=None):
+        """
+        Messages the specified member.
+        """
+        if member == None:
+            return await ctx.send_help(ctx.command)
+                
+        currentMonth = datetime.now().month
+        currentYear = datetime.now().year
+        currentDay = datetime.now().day
+
+
+        msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
+            f"\n**You are on Authorised Absence**\n\nHi{member}, \n\nThis message is to notify you that you are on **Authorised Absence** until __{reason}__. You are not required to complete any activity or shifts until after this date.\n\nIf you have shortfall that has not been completed, this will be added onto your minimum activity requirements for the week you return.\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
+        )
+
+        await self.log(
+            guild=ctx.guild,
+            embed=discord.Embed(
+                title="Automated Message",
+                description=f"An Authorised Asbsence Notification {member}:"
+                + (f" Confirmed Delivery" if reason else "."),
+                color=self.bot.main_color,
+            ).set_footer(text=f"Quality Line Support"),
+        )
+
+        try:
+            await member.send(msg)
+        except discord.errors.Forbidden:
+            return await ctx.send(
+                embed=discord.Embed(
+                    title="Failed",
+                    description=f"Message not sent to {member}. I couldn't message them asthey have disabled DMs.",
+                    color=self.bot.main_color,
+                ).set_footer(text=f"Quality Line Support")
+            )
+                     
+            
+                        #---------------CL Notify---------------
+          
+    @commands.command(usage="<member> [reason]")
+    @checks.has_permissions(PermissionLevel.MODERATOR)
+    async def cl(self, ctx, member: discord.Member = None, *, reason=None):
+        """
+        Messages the specified member.
+        """
+        if member == None:
+            return await ctx.send_help(ctx.command)
+                
+        currentMonth = datetime.now().month
+        currentYear = datetime.now().year
+        currentDay = datetime.now().day
+
+
+        msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
+            f"\n**You are on Compassionate Leave**\n\nHi{member}, \n\nThis message is to notify you that you are on **Compassionate Leave** until __{reason}__, when it will be reviewed. You are not required to complete any activity or shifts until after this date.\n\nIf you have shortfall that has not been completed, this will be added onto your minimum activity requirements for the week you return.\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
+        )
+
+        await self.log(
+            guild=ctx.guild,
+            embed=discord.Embed(
+                title="Automated Message",
+                description=f"A Compassionate Leave Notification {member}:"
+                + (f" Confirmed Delivery" if reason else "."),
+                color=self.bot.main_color,
+            ).set_footer(text=f"Quality Line Support"),
+        )
+
+        try:
+            await member.send(msg)
+        except discord.errors.Forbidden:
+            return await ctx.send(
+                embed=discord.Embed(
+                    title="Failed",
+                    description=f"Message not sent to {member}. I couldn't message them asthey have disabled DMs.",
+                    color=self.bot.main_color,
+                ).set_footer(text=f"Quality Line Support")
+            )
                      
     #---------------Weekly Reports---------------
           
