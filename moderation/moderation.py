@@ -228,7 +228,7 @@ class Moderation(commands.Cog):
 
 
         msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
-            f"\n**You are on Authorised Absence**\n\nHi{member}, \n\nThis message is to notify you that you are on **Authorised Absence** until __{reason}__. You are not required to complete any activity or shifts until after this date.\n\nIf you have shortfall that has not been completed, this will be added onto your minimum activity requirements for the week you return.\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
+            f"\n**You are on Authorised Absence**\n\nHi {member}, \n\nThis message is to notify you that you are on **Authorised Absence** until __{reason}__. You are not required to complete any activity or shifts until after this date.\n\nIf you have shortfall that has not been completed, this will be added onto your minimum activity requirements for the week you return.\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
         )
 
         await self.log(
@@ -270,7 +270,7 @@ class Moderation(commands.Cog):
 
 
         msg = f"This is an automated message from the {ctx.guild.name}:\n" + (
-            f"\n**You are on Compassionate Leave**\n\nHi{member}, \n\nThis message is to notify you that you are on **Compassionate Leave** until __{reason}__, when it will be reviewed. You are not required to complete any activity or shifts until after this date.\n\nIf you have shortfall that has not been completed, this will be added onto your minimum activity requirements for the week you return.\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
+            f"\n**You are on Compassionate Leave**\n\nHi {member}, \n\nThis message is to notify you that you are on **Compassionate Leave** until __{reason}__, when it will be reviewed. You are not required to complete any activity or shifts until after this date.\n\nIf you have shortfall that has not been completed, this will be added onto your minimum activity requirements for the week you return.\n\n*This message was sent on behalf of the Quality Line Management Team. If it you have received it by error, please accept our apologies and close this DM* <:RATPW:714102634411196495>" if reason else "."
         )
 
         await self.log(
